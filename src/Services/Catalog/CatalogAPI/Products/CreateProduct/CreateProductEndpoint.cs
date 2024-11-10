@@ -16,7 +16,7 @@ public class CreateProductEndpoint : ICarterModule
             var result = await sender.Send(createProductCommand);
             var response = result.Adapt<CreateProductResponse>();
             return Results.Created($"/products/${response.Id}", response);
-        }).WithName("CreatProoduct")
+        }).WithName("CreatProduct")
         .Produces(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithDescription("Create Product")
