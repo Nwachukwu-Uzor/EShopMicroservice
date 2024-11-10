@@ -10,15 +10,13 @@ public record UpdateProductCommand(
     string ImageFile,
     decimal Price) : ICommand<UpdateProductCommandResult>;
 
-public class UpdateProductCommandHandler(IDocumentSession session, ILogger<UpdateProductCommandHandler> logger) : ICommandHandler<UpdateProductCommand, UpdateProductCommandResult>
+public class UpdateProductCommandHandler(IDocumentSession session) : ICommandHandler<UpdateProductCommand, UpdateProductCommandResult>
 {
     public async Task<UpdateProductCommandResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Calling UpdateProductCommandHandler.Handler method with parameter {@command}", command);
         var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
         if (product is null)
         {
-            logger.LogError("Error calling UpdateProductCommandHandler.Handler method with parameter {@command}", command);
             throw new ProductNotFoundException(command.Id);
         }
 

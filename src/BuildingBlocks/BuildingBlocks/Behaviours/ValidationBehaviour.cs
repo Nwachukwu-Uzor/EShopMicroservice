@@ -4,7 +4,7 @@ using MediatR;
 
 namespace BuildingBlocks.Behaviours;
 
-public class ValidationBehaviours<TRequest, TResponse>(
+public class ValidationBehaviour<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators
     ) : IPipelineBehavior<TRequest, TResponse>
     where TRequest: ICommand<TResponse>
