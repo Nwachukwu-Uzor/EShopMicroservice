@@ -11,7 +11,7 @@ public class GetProductsByCategoryEndpoint : ICarterModule
         app.MapGet("/api/products/category/{category}", async (ISender sender, string category) => 
             {
             var result = await sender.Send(new GetProductsByCategoryQuery(category));
-            var response = result.Adapt<GetProductsResponse>();
+            var response = result.Adapt<GetProductsQueryResult>();
             return Results.Ok(response);
         }).WithName("GetProductsByCategory")
         .WithDescription("Returns products by category from catalog")
