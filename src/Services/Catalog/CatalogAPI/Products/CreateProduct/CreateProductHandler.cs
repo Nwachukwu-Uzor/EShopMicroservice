@@ -1,3 +1,5 @@
+using JasperFx.Core;
+
 namespace CatalogAPI.Products.CreateProduct;
 
 public record CreateProductCommand(
@@ -9,10 +11,14 @@ public record CreateProductCommand(
 
 public record CreateProductResult(Guid Id);
 
-internal class CreateProductCommandHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
+internal class CreateProductCommandHandler(
+    IDocumentSession session,
+    ILogger<CreateProductCommandHandler> logger) 
+    : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
+        logger.LogInformation("Calling CreateProductCommandHandler.Handle method with {@command}", command);
         // Map command to product entity
         var product = new Product
         {
