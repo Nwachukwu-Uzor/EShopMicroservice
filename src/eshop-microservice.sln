@@ -1,16 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{82EDE0F7-247C-4458-83AA-DE29796003E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{13FCEC36-5841-450C-BABA-8EB7763ACFCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{78914D4C-4C1D-48A6-8A7A-E5C59842B373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogAPI", "Services\Catalog\CatalogAPI\CatalogAPI.csproj", "{110FACC0-9B07-42F1-BF05-628821A1D1A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogAPI", "Services\Catalog\CatalogAPI\CatalogAPI.csproj", "{110FACC0-9B07-42F1-BF05-628821A1D1A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{E5FECBD1-C635-4CED-AD19-430F37F6D720}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{63B0BA2D-40C8-4056-A1A0-D20ACB6DD301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{63B0BA2D-40C8-4056-A1A0-D20ACB6DD301}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{554EC6AB-5153-452A-89A6-C891B283F592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketAPI", "Services\Basket\BasketAPI\BasketAPI.csproj", "{5A0200AA-2922-4596-9C83-896C260244F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +33,13 @@ Global
 		{63B0BA2D-40C8-4056-A1A0-D20ACB6DD301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63B0BA2D-40C8-4056-A1A0-D20ACB6DD301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63B0BA2D-40C8-4056-A1A0-D20ACB6DD301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0200AA-2922-4596-9C83-896C260244F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0200AA-2922-4596-9C83-896C260244F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0200AA-2922-4596-9C83-896C260244F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0200AA-2922-4596-9C83-896C260244F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{13FCEC36-5841-450C-BABA-8EB7763ACFCD} = {82EDE0F7-247C-4458-83AA-DE29796003E7}
@@ -33,5 +47,10 @@ Global
 		{110FACC0-9B07-42F1-BF05-628821A1D1A7} = {78914D4C-4C1D-48A6-8A7A-E5C59842B373}
 		{E5FECBD1-C635-4CED-AD19-430F37F6D720} = {82EDE0F7-247C-4458-83AA-DE29796003E7}
 		{63B0BA2D-40C8-4056-A1A0-D20ACB6DD301} = {E5FECBD1-C635-4CED-AD19-430F37F6D720}
+		{554EC6AB-5153-452A-89A6-C891B283F592} = {13FCEC36-5841-450C-BABA-8EB7763ACFCD}
+		{5A0200AA-2922-4596-9C83-896C260244F2} = {554EC6AB-5153-452A-89A6-C891B283F592}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BCC1FC8-68C9-47C6-9D46-10D0C50454EC}
 	EndGlobalSection
 EndGlobal
