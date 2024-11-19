@@ -4,19 +4,11 @@ public record GetBasketQueryResult(ShoppingCart Cart);
 
 public record GetBasketQuery(string Username) : IQuery<GetBasketQueryResult>;
 
-public class GetBasketQueryHandler() : IQueryHandler<GetBasketQuery, GetBasketQueryResult>
+public class GetBasketQueryHandler(IBasketRepository repository) : IQueryHandler<GetBasketQuery, GetBasketQueryResult>
 {
     public async Task<GetBasketQueryResult> Handle(GetBasketQuery query, CancellationToken cancellationToken)
     {
-        // var shoppingCart = await session.Query<ShoppingCart>()
-        //     .FirstOrDefaultAsync(cart => cart.Username.Equals(query.Username, StringComparison.OrdinalIgnoreCase), cancellationToken);
-        //
-        // if (shoppingCart is null)
-        // {
-        //     throw new NotFoundException(query.Username);
-        // }
-        //
-        // return new GetBasketQueryResult(shoppingCart);
-        return await Task.FromResult(new GetBasketQueryResult(new ShoppingCart("user")));
+        var basket = await repository.GetBasket(query.Username, cancellationToken);
+        return new GetBasketQueryResult(basket);
     }
 }
