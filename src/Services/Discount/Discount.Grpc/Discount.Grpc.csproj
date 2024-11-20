@@ -19,7 +19,7 @@
 
     <ItemGroup>
       <None Remove="Protos\discount.proto" />
-      <Protobuf Include="Protos\discount.proto" />
+      <Protobuf Include="Protos\discount.proto" GrpcServices="Server" ProtoCompile="true" />
     </ItemGroup>
 
     <ItemGroup>
