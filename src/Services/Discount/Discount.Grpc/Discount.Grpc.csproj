@@ -22,8 +22,4 @@
       <Protobuf Include="Protos\discount.proto" GrpcServices="Server" ProtoCompile="true" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
-
 </Project>
