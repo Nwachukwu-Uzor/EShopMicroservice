@@ -5,16 +5,21 @@
     image: postgres
   distributedcache:
     image: redis
-  catalogapi:
+  catalog.api:
     image: catalogapi
     build:
       context: .
       dockerfile: Services/Catalog/CatalogAPI/Dockerfile
-  basketapi:
+  basket.api:
     image: basketapi
     build:
       context: .
       dockerfile: Services/Basket/BasketAPI/Dockerfile
+  discount.grpc:
+    image: discountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 volumes:
   postgres_catalog: 
   postgres_basket: 
