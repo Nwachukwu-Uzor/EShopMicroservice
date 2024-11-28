@@ -5,7 +5,7 @@ public record CustomerId
     public Guid Value { get; }
     private CustomerId(Guid value) => Value = value;
 
-    private static CustomerId Of(Guid id)
+    public static CustomerId Of(Guid id)
     {
         ArgumentNullException.ThrowIfNull(id);
         if (id == Guid.Empty)

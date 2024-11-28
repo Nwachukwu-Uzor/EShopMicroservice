@@ -22,12 +22,12 @@ public record Payment
         PaymentMethod = paymentMethod;
     }
 
-    public static Payment Of(string cardName, string cardNumber, string cvv, string expiration, int paymentMethod)
+    public static Payment Of(string cardName, string cardNumber, string expiration, string cvv, int paymentMethod)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(cardName);
         ArgumentException.ThrowIfNullOrWhiteSpace(cardNumber);
         ArgumentException.ThrowIfNullOrWhiteSpace(expiration);
-        ArgumentOutOfRangeException.ThrowIfNotEqual(cvv.Length, 3);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(cvv.Length, 5);
         return new Payment(cardName, cardNumber, cvv, expiration, paymentMethod);
     }
 }

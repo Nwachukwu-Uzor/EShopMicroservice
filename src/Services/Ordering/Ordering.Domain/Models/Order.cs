@@ -11,7 +11,11 @@ public class Order : Aggregate<OrderId>
     public OrderStatus Status { get; private set; } = OrderStatus.Pending;
     public Payment Payment { get; set; }
 
-    public decimal TotalPrice => OrderItems.Sum(o => o.Price * o.Quantity);
+    public decimal TotalPrice
+    {
+        get => OrderItems.Sum(o => o.Price * o.Quantity);
+        private set { }
+    }
 
     public static Order Create(
         OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, 
