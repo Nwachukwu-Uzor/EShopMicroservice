@@ -1,11 +1,11 @@
-using Ordering.API.Extensions;
+using Ordering.API;
 using Ordering.Application.Extensions;
 using Ordering.Infrastructure;
 using Ordering.Infrastructure.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
-    .AddApiServices()
+    .AddApiServices(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration)
     .AddApplicationServices();
 var app = builder.Build();

@@ -1,6 +1,6 @@
 namespace Ordering.Application.Orders.Commands.UpdateOrder;
 
-public record UpdateOrderCommandResult(bool isSuccess);
+public record UpdateOrderCommandResult(bool IsSuccess);
 
 public record UpdateOrderCommand(OrderDto Order) : ICommand<UpdateOrderCommandResult>;
 
