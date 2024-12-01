@@ -1,6 +1,6 @@
-namespace BuildingBlocks.Messaging.Events;
+namespace BasketAPI.Dtos;
 
-public record BasketCheckoutEvent
+public class BasketCheckoutDto
 {
     public Guid CustomerId { get; set; } = default!;
     public string Username { get; set; } = default!;
@@ -19,4 +19,4 @@ public record BasketCheckoutEvent
     public string Expiration { get; set; } = default!;
     public string CVV { get; set; } = default!;
     public int PaymentMethod { get; set; }
-};
+}

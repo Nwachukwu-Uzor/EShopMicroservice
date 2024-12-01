@@ -1,9 +1,12 @@
+using Microsoft.FeatureManagement;
+
 namespace Ordering.Application.Orders.Commands.CreateOrder;
 
-public class CreateOrderCommandHandler(IApplicationDbContext context) : ICommandHandler<CreateOrderCommand, CreateOrderCommandResult>
+public class CreateOrderCommandHandler(IApplicationDbContext context, IFeatureManager featureManager) : ICommandHandler<CreateOrderCommand, CreateOrderCommandResult>
 {
     public async Task<CreateOrderCommandResult> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
     {
+        var isEnabled = await featureManager.IsEnabledAsync("OrderFulfillment");
         // Map request to domain entity
         var order = CreateNewOrder(command.Order);
         // Save request to the database

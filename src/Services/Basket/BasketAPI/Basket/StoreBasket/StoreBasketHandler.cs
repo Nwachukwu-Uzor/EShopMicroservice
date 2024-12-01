@@ -21,7 +21,7 @@ public class StoreBasketCommandHandler(IBasketRepository repository,
 {
     public async Task<StoreBasketCommandResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
     {
-        // TODO: Add communication with Discount Microservice Using GRPC protocol
+        // Add communication with Discount Microservice Using GRPC protocol
         await DeductDiscount(command, cancellationToken);
         // Store the basket the database (use marten upsert - update if exists or else create)
         var basket = await repository.StoreBasket(command.Cart, cancellationToken);

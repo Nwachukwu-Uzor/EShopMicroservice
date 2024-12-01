@@ -9,3 +9,4 @@ global using FluentValidation;
 global using BuildingBlocks.Behaviours;
 global using BasketAPI.Data;
 global using BuildingBlocks.Exceptions.Handler;
+global using BasketAPI.Dtos;

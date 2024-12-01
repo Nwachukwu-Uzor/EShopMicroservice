@@ -34,7 +34,18 @@ services:
     restart: always
     ports:
       - "1433:1433"
+  messagebroker:
+    container_name: messagebroker
+    hostname: e-shop-microservice
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   catalog.api:
+    container_name: catalogapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -51,6 +62,7 @@ services:
     volumes:
       - ~/.aspnet/https:/https:ro
   basket.api:
+    container_name: basketapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -61,16 +73,21 @@ services:
       - ConnectionStrings__Database=Server=basketDb;Port=5432;User Id=postgres;Password=postgres;Database=basketDb;Include Error Detail=true
       - ConnectionStrings__Redis=distributedcache:6379
       - GrpcSettings__DiscountUrl=https://discount.grpc:8081
+      - MessageBroker__Host=amqp://e-shop-microservice:5672/
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
     depends_on:
       - catalogdb
       - distributedcache
       - discount.grpc
+      - messagebroker
     ports:
       - "6001:8080"
       - "6061:8081"
     volumes:
       - ~/.aspnet/https:/https:ro
   discount.grpc:
+    container_name: discountgrpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -81,6 +98,27 @@ services:
     ports:
       - "6002:8080"
       - "6062:8081"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+  ordering.api:
+    container_name: orderingapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=12345
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ConnectionStrings__Database=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;Encrypt=False;TrustServerCertificate=True
+      - MessageBroker__Host=amqp://e-shop-microservice:5672/
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+      - FeatureManagement__OrderFulfillment=false
+    ports:
+      - "6063:8081"
+      - "6003:8000"
+    depends_on:
+      - orderdb
+      - distributedcache
     volumes:
       - ~/.aspnet/https:/https:ro
     
